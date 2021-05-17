@@ -1,13 +1,14 @@
 import "../styles/globals.css";
-import { ReactQueryDevtools } from "react-query/devtools";
+import React from "react";
+
 import { QueryClient, QueryClientProvider } from "react-query";
+import { ReactQueryDevtools } from "react-query/devtools";
 import { Hydrate } from "react-query/hydration";
 
-import React from "react";
-function MyApp({ Component, pageProps }) {
+export default function MyApp({ Component, pageProps }) {
   const queryClientRef = React.useRef<QueryClient>();
 
-  if (queryClientRef.current) {
+  if (!queryClientRef.current) {
     queryClientRef.current = new QueryClient();
   }
 
@@ -20,5 +21,3 @@ function MyApp({ Component, pageProps }) {
     </QueryClientProvider>
   );
 }
-
-export default MyApp;
